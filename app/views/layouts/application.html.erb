@@ -14,6 +14,7 @@
   <%= link_to "sign_up", new_user_url %>
 <% else %>
   <%= current_user.username %>
+  <%= link_to "subs", subs_url %>
   <%= button_to "log_out", session_url, method: :delete %>
 <% end %>
 

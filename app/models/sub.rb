@@ -1,14 +1,13 @@
 class Sub < ActiveRecord::Base
 
-  # has_many :post_subs
-  #
-  # has_many(
-  # :posts,
-  # through: :post_subs,
-  # source: :post
-  # )
+  has_many :post_subs, dependent: :destroy
 
-  has_many :posts
+  has_many(
+  :posts,
+  through: :post_subs,
+  source: :post
+  )
+
 
   belongs_to(
   :moderator,

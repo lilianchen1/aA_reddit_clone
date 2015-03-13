@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :posts
 
+  has_many :comments
+
   attr_reader :password
 
   def password=(password)

@@ -1,0 +1,19 @@
+Post title: <%= @post.title %>
+Post content: <%= @post.content %>
+
+<br>
+
+<% @post.comments.each do |comment| %>
+  <% if comment.parent_comment_id.nil? %>
+    <%= render 'comment', comment: comment %>
+  <% end %>
+<% end %>
+
+<p>Create new comment</p>
+post_comments
+
+<form action="/posts/<%= @post.id %>/comments" method="post">
+  <label for="content">Content</label>
+  <input type="text" name="comment[content]" id="title">
+  <input type="submit" value="create comment">
+</form>
