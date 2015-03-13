@@ -1,0 +1,8 @@
+
+this is the index for subs
+
+<% @subs.each do |subpost| %>
+<%= link_to subpost.title, sub_url(subpost.id) %>
+<%= subpost.description %>
+<br>
+<% end %>

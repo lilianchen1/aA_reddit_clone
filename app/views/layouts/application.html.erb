@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reddit</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<% if current_user.nil? %>
+  <%= link_to "log_in", new_session_url %>
+  <%= link_to "sign_up", new_user_url %>
+<% else %>
+  <%= current_user.username %>
+  <%= button_to "log_out", session_url, method: :delete %>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>
