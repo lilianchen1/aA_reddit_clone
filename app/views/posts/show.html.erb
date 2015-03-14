@@ -3,9 +3,9 @@ Post content: <%= @post.content %>
 
 <br>
 
-<% @post.comments.each do |comment| %>
+<% @all_comments.each do |comment| %>
   <% if comment.parent_comment_id.nil? %>
-    <%= render 'comment', comment: comment %>
+    <%= render 'comment', comment: comment, all_comments: @all_comments %>
   <% end %>
 <% end %>
 

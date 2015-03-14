@@ -1,9 +1,11 @@
 
-<%= User.find(comment.user_id).username %>
+<%= comment.user.username %>
 <%= link_to comment.content, comment_url(comment) %>
-<% comment.child_comments.each do |child_comment| %>
-<ul>
-  <%= render 'comment', comment: child_comment %>
-</ul>
+<% all_comments.each do |child_comment| %>
+  <ul>
+    <% if child_comment.parent_comment_id == comment.id %>
+      <%= render 'comment', comment: child_comment, all_comments: all_comments %>
+    <% end %>
+  </ul>
 <% end %>
 <br>

@@ -3,15 +3,15 @@ class PostsController < ApplicationController
   before_action :validate_post_author, only: [:edit, :update]
 
   def create
-    subpost = Sub.find(params[:sub_id])
-    @post = subpost.posts.new(post_params)
-    @post.user_id = current_user.id
+    # subpost = Sub.find(params[:sub_id])
+    @post = current_user.posts.new(post_params)
+    # @post.user_id = current_user.id
     if @post.save
       redirect_to sub_url(params[:sub_id])
-      @post.in_subs.each do |in_sub|
-        in_sub.post_id = @post.id
-        in_sub.save
-      end
+      # @post.in_subs.each do |in_sub|
+      #   in_sub.post_id = @post.id
+      #   in_sub.save
+      # end
     else
       flash[:errors] = @post.errors.full_messages
       redirect_to sub_url(params[:sub_id])
@@ -24,6 +24,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @all_comments = @post.comments.includes(:user)
   end
 
   def update
@@ -36,6 +37,8 @@ class PostsController < ApplicationController
     end
   end
 
+  private
+  
   def validate_post_author
     @post = Post.find(params[:id])
     redirect_to post_url(@post) unless @post.user_id = current_user.id
