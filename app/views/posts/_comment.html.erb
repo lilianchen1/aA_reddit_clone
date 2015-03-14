@@ -1,10 +1,10 @@
 
 <%= comment.user.username %>
 <%= link_to comment.content, comment_url(comment) %>
-<% all_comments.each do |child_comment| %>
+<% comments_by_parent_id[comment.id].each do |child_comment| %>
   <ul>
     <% if child_comment.parent_comment_id == comment.id %>
-      <%= render 'comment', comment: child_comment, all_comments: all_comments %>
+      <%= render 'comment', comment: child_comment, comments_by_parent_id: comments_by_parent_id %>
     <% end %>
   </ul>
 <% end %>

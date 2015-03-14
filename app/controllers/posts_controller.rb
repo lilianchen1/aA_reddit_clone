@@ -24,6 +24,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments_by_parent_id = @post.comments_by_parent_id
     @all_comments = @post.comments.includes(:user)
   end
 
@@ -38,7 +39,7 @@ class PostsController < ApplicationController
   end
 
   private
-  
+
   def validate_post_author
     @post = Post.find(params[:id])
     redirect_to post_url(@post) unless @post.user_id = current_user.id

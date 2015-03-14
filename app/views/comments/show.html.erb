@@ -1,4 +1,5 @@
-<%= render 'comment', comment: @comment %>
+<%= render 'posts/comment', comment: @comment,
+ comments_by_parent_id: @comments_by_parent_id%>
 
 <form action="/posts/<%= @comment.post_id %>/comments" method="post">
   <input type="hidden" name="comment[parent_comment_id]" value="<%= @comment.id %>"

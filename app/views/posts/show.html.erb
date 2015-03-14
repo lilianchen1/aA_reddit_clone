@@ -3,10 +3,9 @@ Post content: <%= @post.content %>
 
 <br>
 
-<% @all_comments.each do |comment| %>
-  <% if comment.parent_comment_id.nil? %>
-    <%= render 'comment', comment: comment, all_comments: @all_comments %>
-  <% end %>
+<% @post.comments_by_parent_id[nil].each do |comment| %>
+  <%= render 'comment', comment: comment,
+   comments_by_parent_id: @post.comments_by_parent_id%>
 <% end %>
 
 <p>Create new comment</p>

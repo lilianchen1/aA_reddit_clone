@@ -25,6 +25,14 @@ class Post < ActiveRecord::Base
   )
 
   has_many :comments
+
+  def comments_by_parent_id
+    hash = Hash.new { |h, k| h[k] = [] }
+    self.comments.includes(:user).each do |comment|
+      hash[comment.parent_comment_id] += [comment]
+    end
+    hash
+  end
   # def sub_ids=(sub_ids)
   #   in_subs=[]
   #   sub_ids.each do |sub_id|
